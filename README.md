@@ -1,6 +1,6 @@
 # TV Show List 📺
 
-This website is used to make a list of your favourite TV Shows! It fetches shows from the TVMaze API and allows you to add them to your list with a rating.
+This website is used to make a list of your favourite TV Shows! It fetches shows from the [TVMaze API](https://www.tvmaze.com/api) and allows you to add them to your list with a rating.
 
 ## Features 💥
 - Dark Mode
