@@ -37,9 +37,13 @@ app.get('/list', async (req, res) => {
     res.render('list.ejs', { shows, preview: false });
 })
 
-app.post('/list', async (req, res) => {
-    const show = new Show(req.body.show);
-    await show.save();
+app.post('/list', async (req, res, next) => {
+    try {
+        const show = new Show(req.body.show);
+        await show.save();
+    } catch (e) {
+        return next(e);
+    }
     res.send(show);
 })
 
@@ -55,10 +59,16 @@ app.get('/search', async (req, res) => {
     res.render('search.ejs', { q, preview: true, showResults: showResults.data });
 })
 
-app.use((req, res) => {
-    res.status(404).render('notfound.ejs');
+app.use((req, res, next) => {
+    err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 })
 
+app.use((err, req, res, next) => {
+    const { status = 500, message = 'Something went wrong' } = err;
+    res.status(status).render('notfound.ejs', { preview: false, status: status, message: message });
+})
 
 app.listen(8080, () => {
     console.log('listening on port 8080');
