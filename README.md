@@ -4,6 +4,7 @@ This website is used to make a list of your favourite TV Shows! It fetches shows
 
 ## Features 💥
 - Dark Mode
+- Custom List Name
 - Saved TV Show List using a Database
 - Basic Error Handling
 - Cool SVGs
